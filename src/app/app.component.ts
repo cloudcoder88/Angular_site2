@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class LayoutComponent {
+export class AppComponent {
   isDesktop = true;
   isDarkTheme = false;
 
