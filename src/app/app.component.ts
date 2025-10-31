@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule, 
@@ -22,21 +22,16 @@ export class AppComponent {
   isDesktop = true;
   isDarkTheme = false;
 
-  @HostListener('window:resize', [])
+  @HostListener('window:resize')
   onResize() {
-    this.checkScreenSize();
+    this.isDesktop = window.innerWidth > 768;
   }
 
   ngOnInit() {
-    this.checkScreenSize();
-    // Load theme preference from localStorage
+    this.onResize();
     const savedTheme = localStorage.getItem('theme');
     this.isDarkTheme = savedTheme === 'dark';
     this.applyTheme();
-  }
-
-  checkScreenSize() {
-    this.isDesktop = window.innerWidth > 768;
   }
 
   toggleTheme() {
@@ -46,17 +41,6 @@ export class AppComponent {
   }
 
   applyTheme() {
-    if (this.isDarkTheme) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
+    document.body.classList.toggle('dark-theme', this.isDarkTheme);
   }
-
-  sidebarVisible = false;
-
-
-toggleSidebar() {
-  this.sidebarVisible = !this.sidebarVisible;
-}
 }
