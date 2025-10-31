@@ -52,3 +52,9 @@ main {
   padding: 2rem;
   min-height: 80vh;
 }
+
+
+/* TEMPORARY - Remove app component styles */
+:host {
+  display: contents !important; /* Let home component take full control */
+}
