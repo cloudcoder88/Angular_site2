@@ -1,9 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
   <!-- Sidebar -->
-  <mat-sidenav #sidenav mode="over" position="start" class="sidebar">
+  <mat-sidenav #sidenav mode="over" position="end" class="sidebar">
     <div class="sidebar-content">
       <div class="sidebar-header">
-        <h2></h2>
+        <h2>Uzodinma Bright</h2>
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>close</mat-icon>
         </button>
@@ -32,13 +32,15 @@
         <a routerLink="/projects">Projects</a>
         <a routerLink="/contact">Contact</a>
       </div>
-      <button mat-icon-button (click)="toggleTheme()">
-        <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
-      </button>
-      <!-- Mobile menu button -->
-      <button mat-icon-button class="mobile-menu" (click)="sidenav.toggle()" *ngIf="!isDesktop">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div class="nav-right">
+        <button mat-icon-button (click)="toggleTheme()">
+          <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+        <!-- Mobile menu button -->
+        <button mat-icon-button class="mobile-menu" (click)="sidenav.toggle()" *ngIf="!isDesktop">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
     </nav>
 
     <!-- Your router outlet - this will show your home page with Typed.js -->
