@@ -1,46 +1,66 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, RouterOutlet } from '@angular/router';
+
+// Angular Material imports
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterModule, 
-    MatSidenavModule, 
-    MatButtonModule,
-    MatIconModule
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isDesktop = true;
   isDarkTheme = false;
+  isDesktop = window.innerWidth > 768;
 
-  @HostListener('window:resize')
+  @HostListener('window:resize', ['$event'])
   onResize() {
     this.isDesktop = window.innerWidth > 768;
   }
 
-  ngOnInit() {
-    this.onResize();
-    const savedTheme = localStorage.getItem('theme');
-    this.isDarkTheme = savedTheme === 'dark';
-    this.applyTheme();
-  }
-
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    this.applyTheme();
-    localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
+    localStorage.setItem('darkTheme', JSON.stringify(this.isDarkTheme));
+    
+    // Apply theme to body
+    if (this.isDarkTheme) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
   }
 
-  applyTheme() {
-    document.body.classList.toggle('dark-theme', this.isDarkTheme);
+  sidenavOpen = false;
+
+toggleSidenav() {
+  this.sidenavOpen = !this.sidenavOpen;
+}
+
+closeSidenav() {
+  this.sidenavOpen = false;
+}
+
+  constructor() {
+    const savedTheme = localStorage.getItem('darkTheme');
+    if (savedTheme) {
+      this.isDarkTheme = JSON.parse(savedTheme);
+      if (this.isDarkTheme) {
+        document.body.classList.add('dark-theme');
+      }
+    }
   }
 }

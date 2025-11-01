@@ -1,7 +1,7 @@
 <!-- Desktop Navbar -->
 <nav class="desktop-nav" *ngIf="isDesktop">
   <div class="nav-brand">
-    <h2>Your Name</h2>
+    <h2>Uzodinma Bright</h2>
   </div>
   <div class="nav-links">
     <a routerLink="/" routerLinkActive="active">Home</a>
@@ -10,48 +10,51 @@
     <a routerLink="/projects" routerLinkActive="active">Projects</a>
     <a routerLink="/contact" routerLinkActive="active">Contact</a>
   </div>
-  <button mat-icon-button (click)="toggleTheme()">
+  <button mat-icon-button (click)="toggleTheme()" class="theme-toggle">
     <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
   </button>
 </nav>
 
-<!-- Mobile Sidebar -->
-<mat-sidenav-container class="mobile-container" *ngIf="!isDesktop">
-  <mat-sidenav #sidenav mode="over" position="start">
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <h2>Your Name</h2>
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-      <div class="sidebar-links">
-        <a routerLink="/" routerLinkActive="active" (click)="sidenav.toggle()">Home</a>
-        <a routerLink="/about" routerLinkActive="active" (click)="sidenav.toggle()">About</a>
-        <a routerLink="/services" routerLinkActive="active" (click)="sidenav.toggle()">My Services</a>
-        <a routerLink="/projects" routerLinkActive="active" (click)="sidenav.toggle()">Projects</a>
-        <a routerLink="/contact" routerLinkActive="active" (click)="sidenav.toggle()">Contact</a>
-      </div>
-    </div>
-  </mat-sidenav>
+<!-- Mobile Navigation -->
+<div class="mobile-nav" *ngIf="!isDesktop">
+  <div class="mobile-header">
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mobile-title">Uzodinma Bright</span>
+    <button mat-icon-button (click)="toggleTheme()" class="theme-toggle">
+      <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </div>
 
-  <mat-sidenav-content>
-    <div class="mobile-header">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <h2>Your Name</h2>
-      <button mat-icon-button (click)="toggleTheme()">
-        <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
-      </button>
-    </div>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <mat-sidenav-container class="mobile-container">
+    <mat-sidenav #sidenav mode="over" position="start" class="sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <h2>Uzodinma Bright</h2>
+          <button mat-icon-button (click)="sidenav.close()" class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <nav class="sidebar-links">
+          <a routerLink="/" routerLinkActive="active" (click)="sidenav.close()">Home</a>
+          <a routerLink="/about" routerLinkActive="active" (click)="sidenav.close()">About</a>
+          <a routerLink="/myservices" routerLinkActive="active" (click)="sidenav.close()">My Services</a>
+          <a routerLink="/projects" routerLinkActive="active" (click)="sidenav.close()">Projects</a>
+          <a routerLink="/contact" routerLinkActive="active" (click)="sidenav.close()">Contact</a>
+        </nav>
+      </div>
+    </mat-sidenav>
 
-<!-- Desktop content -->
+    <mat-sidenav-content>
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- Desktop Content -->
 <main class="desktop-main" *ngIf="isDesktop">
   <router-outlet></router-outlet>
 </main>
