@@ -17,9 +17,8 @@ export class HomeComponent implements OnInit {
         'Machine Learning Engineer',
         'Problem Solver'
       ],
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 2000,
+      typeSpeed: 60,
+      backSpeed: 40,
       loop: true
     });
   }
