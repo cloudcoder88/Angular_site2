@@ -34,16 +34,21 @@ export class AppComponent {
   }
 
   toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    localStorage.setItem('darkTheme', JSON.stringify(this.isDarkTheme));
-    
-    if (this.isDarkTheme) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
+  this.isDarkTheme = !this.isDarkTheme;
+  localStorage.setItem('darkTheme', JSON.stringify(this.isDarkTheme));
+  
+  // Apply theme to body
+  if (this.isDarkTheme) {
+    document.body.classList.remove('light-theme');
+    document.body.classList.add('dark-theme');
+  } else {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
   }
+}
+// i added the side toggle nav
 
+ // ADD THESE METHODS:
   toggleSidenav() {
     this.sidenav.toggle();
   }
@@ -52,13 +57,23 @@ export class AppComponent {
     this.sidenav.close();
   }
 
-  constructor() {
-    const savedTheme = localStorage.getItem('darkTheme');
-    if (savedTheme) {
-      this.isDarkTheme = JSON.parse(savedTheme);
-      if (this.isDarkTheme) {
-        document.body.classList.add('dark-theme');
-      }
+
+
+
+
+constructor() {
+  const savedTheme = localStorage.getItem('darkTheme');
+  if (savedTheme) {
+    this.isDarkTheme = JSON.parse(savedTheme);
+    if (this.isDarkTheme) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.add('light-theme');
     }
+  } else {
+    // Default to dark theme
+    document.body.classList.add('dark-theme');
+    this.isDarkTheme = true;
   }
 }
+};
