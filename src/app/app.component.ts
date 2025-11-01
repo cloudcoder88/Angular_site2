@@ -1,12 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
-
-// Angular Material imports
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  
   isDarkTheme = false;
   isDesktop = window.innerWidth > 768;
 
@@ -36,7 +37,6 @@ export class AppComponent {
     this.isDarkTheme = !this.isDarkTheme;
     localStorage.setItem('darkTheme', JSON.stringify(this.isDarkTheme));
     
-    // Apply theme to body
     if (this.isDarkTheme) {
       document.body.classList.add('dark-theme');
     } else {
@@ -44,15 +44,13 @@ export class AppComponent {
     }
   }
 
-  sidenavOpen = false;
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 
-toggleSidenav() {
-  this.sidenavOpen = !this.sidenavOpen;
-}
-
-closeSidenav() {
-  this.sidenavOpen = false;
-}
+  closeSidenav() {
+    this.sidenav.close();
+  }
 
   constructor() {
     const savedTheme = localStorage.getItem('darkTheme');
