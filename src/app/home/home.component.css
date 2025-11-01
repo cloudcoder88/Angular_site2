@@ -3,60 +3,121 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  background: #1a1a1a;
+  color: white;
   text-align: center;
+  padding: 2rem;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .profile-pic {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #2ecc71;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border: 4px solid #bb86fc;
   margin-bottom: 2rem;
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
 }
 
 .highlight {
-  color: #2ecc71; /* Or your theme color */
-}
-
-.hero-subtitle {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  min-height: 60px;
+  color: #bb86fc;
 }
 
 .hero-description {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #a0a0a0;
+}
+
+.typed-text {
+  color: #03dac6;
+}
+
+.hero-bio {
   font-size: 1.1rem;
   margin-bottom: 2rem;
-  line-height: 1.6;
+  color: #cccccc;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
-/* Typed.js cursor styling */
-.typed-cursor {
-  font-size: 1.8rem;
-  opacity: 1;
-  animation: blink 0.7s infinite;
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.btn-primary {
+  background: #bb86fc;
+  color: white;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #bb86fc;
+  border: 2px solid #bb86fc;
+}
+
+.projects {
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: #2d2d2d;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #bb86fc;
+}
+
+.project-card h3 {
+  color: #bb86fc;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 200px;
+  }
 }
