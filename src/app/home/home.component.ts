@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
         'Full Stack Developer',
         'AI Enthusiast', 
         'Machine Learning Engineer',
+        'Typescript Wizard',
         'Problem Solver'
       ],
       typeSpeed: 60,
