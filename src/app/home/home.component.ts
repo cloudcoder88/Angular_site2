@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Typed from 'typed.js';
-import { Router, RouterLink,RouterModule } from '@angular/router';
+import { RouterLink,RouterModule } from '@angular/router';
 import { routes } from '../app.routes';
 
 @Component({
@@ -8,8 +8,8 @@ import { routes } from '../app.routes';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   imports:[RouterModule,
-    RouterLink],
-    standalone:true
+   RouterLink],
+  standalone:true
   
 })
 export class HomeComponent implements OnInit {
