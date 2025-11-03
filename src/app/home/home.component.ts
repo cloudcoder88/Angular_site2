@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import Typed from 'typed.js';
+import { Router, RouterLink,RouterModule } from '@angular/router';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  imports:[RouterModule,
+    RouterLink],
+    standalone:true
+  
 })
 export class HomeComponent implements OnInit {
 
